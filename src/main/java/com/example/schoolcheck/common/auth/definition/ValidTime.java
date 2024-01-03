@@ -1,9 +1,9 @@
-package com.example.schoolcheck.auth.type;
+package com.example.schoolcheck.common.auth.definition;
 
 import lombok.Getter;
 
 @Getter
-public enum VALID_TIME {
+public enum ValidTime {
     //accessToken 유효 시간
     ACCESS_TOKEN_VALID_TIME(1000L * 60 * 60 * 2),
     //refreshToken 유효 시간
@@ -11,10 +11,8 @@ public enum VALID_TIME {
     ;
     private final long time;
 
-    VALID_TIME(long time) {
+    ValidTime(long time) {
         this.time = time;
     }
 
-    // enum은 클래스적
-    // type -> definition
 }

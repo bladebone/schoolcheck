@@ -1,6 +1,6 @@
-package com.example.schoolcheck.auth;
+package com.example.schoolcheck.common.auth;
 
-import com.example.schoolcheck.auth.type.VALID_TIME;
+import com.example.schoolcheck.common.auth.definition.ValidTime;
 import io.jsonwebtoken.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class TokenProvider {
 
         Date now = new Date();
         Date expiredDate =
-                new Date(now.getTime() + VALID_TIME.ACCESS_TOKEN_VALID_TIME.getTime());
+                new Date(now.getTime() + ValidTime.ACCESS_TOKEN_VALID_TIME.getTime());
 
 
         return Jwts.builder()

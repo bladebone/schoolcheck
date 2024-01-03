@@ -12,6 +12,7 @@ public class TestDomainGetResDto {
     private final String word;
 
     public TestDomainGetResDto(TestDomain testDomain) {
+        // .getId()를 사용하는 이유는 뭘까..?
         this.domainId = testDomain.getId();
         this.type = testDomain.getTestDomainType();
         this.word = testDomain.getWord();
