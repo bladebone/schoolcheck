@@ -1,4 +1,4 @@
-package com.example.schoolcheck.common.auth.definition;
+package com.example.schoolcheck.common.authentication.definition;
 
 import lombok.Getter;
 

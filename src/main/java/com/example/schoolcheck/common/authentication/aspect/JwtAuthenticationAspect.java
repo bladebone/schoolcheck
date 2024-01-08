@@ -1,7 +1,7 @@
-package com.example.schoolcheck.common.auth.aspect;
+package com.example.schoolcheck.common.authentication.aspect;
 
-import com.example.schoolcheck.common.auth.TokenProvider;
-import com.example.schoolcheck.common.auth.validator.JwtAuthenticationValidator;
+import com.example.schoolcheck.common.authentication.TokenProvider;
+import com.example.schoolcheck.common.exception.JwtAuthenticationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class JwtAuthenticationAspect {
         String token = tokenProvider.resolveToken(request);
 
         if (token == null || !tokenProvider.validateToken(token)) {
-            throw new JwtAuthenticationValidator("유효하지 않은 토큰입니다.");
+            throw new JwtAuthenticationException("유효하지 않은 토큰입니다.");
         }
 
     }
