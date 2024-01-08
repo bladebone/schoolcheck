@@ -26,6 +26,7 @@ public class TestDomainController {
             BindingResult bindingResult) {
 
         testDomainGetReqDtoValidator.validate(reqDto, bindingResult);
+
         if (bindingResult.hasErrors()) {
             throw new ValidationIllegalArgumentException(bindingResult);
         }
