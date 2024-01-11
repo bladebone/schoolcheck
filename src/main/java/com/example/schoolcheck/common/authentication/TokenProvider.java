@@ -1,6 +1,7 @@
 package com.example.schoolcheck.common.authentication;
 
 import com.example.schoolcheck.common.authentication.definition.ValidTime;
+import com.example.schoolcheck.user.definition.Role;
 import io.jsonwebtoken.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ public class TokenProvider {
     private static final String AUTHORIZATION_KEY = "Authorization";
 
 
-    public String generateToken(String email, String role, boolean isRefresh) {
+    public String generateToken(String email, Role role, boolean isRefresh) {
 
         Claims claims = Jwts.claims().setSubject(email);
         claims.put("KEY_ROLES", role);

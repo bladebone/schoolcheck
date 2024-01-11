@@ -18,7 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @RequiredArgsConstructor
 public class JwtAuthenticationAspect {
     private TokenProvider tokenProvider;
-    @Before("execution(* com.example.schoolcheck.*.*(..))")
+    @Before("execution(* com.example.schoolcheck.*.controller.*(..))") //execution에 대해서 찾아보기, 어노테이션이 존재하는 메소드만,
     public void authenticate(JoinPoint joinPoint) throws Exception {
 
         HttpServletRequest request = ((ServletRequestAttributes)
