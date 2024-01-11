@@ -9,11 +9,12 @@ public record UserReqDto(
         Role role,
         String pwd
 ) {
-    public User toUser(String encryptedPwd){
+    public User toUser(String encryptedPwd, String salt){
         return User.builder()
                 .email(this.email)
                 .name(this.name)
                 .pwd(encryptedPwd)
+                .salt(salt)
                 .role(this.role)
                 .build();
     }

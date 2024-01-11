@@ -4,6 +4,7 @@ import com.example.schoolcheck.common.authentication.CookieProvider;
 import com.example.schoolcheck.common.authentication.TokenProvider;
 import com.example.schoolcheck.common.authentication.definition.ValidTime;
 import com.example.schoolcheck.common.authentication.util.Aes256Util;
+import com.example.schoolcheck.common.authentication.util.PasswordEncoder;
 import com.example.schoolcheck.common.exception.DataNotFoundException;
 import com.example.schoolcheck.user.User;
 import com.example.schoolcheck.user.dto.UserReqDto;
@@ -26,12 +27,15 @@ public class UserServiceImpl implements UserService {
     private final TokenProvider tokenProvider;
     private final RedisTemplate<String, String> redisTemplate;//string prefix, 스프링 추상화 메소드 찾아서 jwt토큰 저장하는 방법알아보기
     private final CookieProvider cookieProvider;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void createUser(UserReqDto userReqDto) {
 
-        String encryptPwd = Aes256Util.encrypt(userReqDto.pwd()); //비밀번호 단방향 암호화로 바꾸기
-        userRepository.save(userReqDto.toUser(encryptPwd));
+        String salt = passwordEncoder.getSalt();
+
+        String encryptPwd = passwordEncoder.getEncrypt(userReqDto.pwd(), salt);
+        userRepository.save(userReqDto.toUser(encryptPwd, salt));
     }
 
     @Override
