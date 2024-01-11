@@ -11,7 +11,6 @@ import com.example.schoolcheck.user.dto.UserSigninReqDto;
 import com.example.schoolcheck.user.dto.UserSigninResDto;
 import com.example.schoolcheck.user.repository.UserRepository;
 import com.example.schoolcheck.user.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -30,8 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(UserReqDto userReqDto) {
-        //간략하게 푸쉬(서버에러안나게) - 우선순위!!!
-        //토큰 재발급이나, 다양한 api 확인하기
+
         String encryptPwd = Aes256Util.encrypt(userReqDto.pwd()); //비밀번호 단방향 암호화로 바꾸기
         userRepository.save(userReqDto.toUser(encryptPwd));
     }
